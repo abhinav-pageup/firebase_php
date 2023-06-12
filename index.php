@@ -43,11 +43,9 @@
                 type: 'POST',
                 data: { fcm_token: token, project_master_id: 1 },
                 success: function (data) {
-                    // console.log(data);
                     localStorage.setItem('isFcmSaved', 1);
                 },
                 error: function (error) {
-                    // console.log(error);
                     localStorage.setItem('isFcmSaved', 0);
                 }
             });
@@ -61,17 +59,18 @@
         initFirebaseMessagingRegistration();
     }
 
-    messaging.onMessage(function ({ data: { body, title, icon, clickAction } }) {
-        console.log('Notification: ', data)
-        let notification = new Notification(title, {
-            body,
-            icon
-        });
+    // messaging.onMessage(function (data) {
+    //     let notificationOptions = {
+    //         body: data.data.body,
+    //         icon: data.data.icon
+    //     }
+    //     let notification = new Notification(data.data.title, notificationOptions);
 
-        notification.addEventListener('click', function () {
-            window.open(clickAction);
-        });
-    });
+    //     notification.onclick = (event) => {
+    //         event.preventDefault();
+    //         window.open(data.data.click_action);
+    //     };
+    // });
 </script>
 
 </html>
